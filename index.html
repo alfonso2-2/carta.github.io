@@ -8,73 +8,88 @@
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
 
         :root {
-            --primary-color: #4e73df;
-            --secondary-color: #1cc88a;
-            --danger-color: #e74a3b;
-            --bg-color: #f8f9fc;
-            --white-color: #fff;
-            --text-color: #5a5c69;
+            --primary-color: #3B82F6;
+            --secondary-color: #10B981;
+            --danger-color: #EF4444;
+            --bg-color: #F3F4F6;
+            --white-color: #FFF;
+            --text-color: #111827;
+            --shadow-color: rgba(0, 0, 0, 0.1);
         }
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #74b9ff, #a29bfe);
+            background: linear-gradient(135deg, #6366F1, #A78BFA);
             margin: 0;
             padding: 0;
-        }
-
-        h1 {
-            text-align: center;
-            color: var(--white-color);
-            margin: 30px 0 10px;
-            font-size: 2.5rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-        }
-
-        h2 {
-            text-align: center;
-            color: var(--primary-color);
-            margin: 10px 0 20px;
-            font-size: 1.8rem;
-            text-transform: uppercase;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
         }
 
         .container {
             width: 90%;
-            max-width: 1200px;
-            margin: auto;
-            padding: 20px;
+            max-width: 800px;
+            background-color: var(--bg-color);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px var(--shadow-color);
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        h1, h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
         }
 
         form {
             background: var(--white-color);
-            border-radius: 15px;
             padding: 20px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px var(--shadow-color);
             display: flex;
             flex-direction: column;
             gap: 15px;
+            transition: transform 0.3s ease-in-out;
         }
 
-        input, select {
-            padding: 12px;
-            border: 2px solid var(--primary-color);
-            border-radius: 10px;
+        form:hover {
+            transform: scale(1.02);
+        }
+
+        input, select, button {
+            padding: 15px;
+            border-radius: 8px;
             font-size: 1rem;
-            background-color: #f1f2f6;
-            transition: all 0.3s;
+            border: 1px solid var(--primary-color);
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        input:focus, select:focus {
+            border-color: var(--secondary-color);
+            outline: none;
+            background-color: #D1D5DB;
         }
 
         button {
-            padding: 12px;
             background-color: var(--primary-color);
             color: var(--white-color);
-            border: none;
-            border-radius: 10px;
-            font-size: 1.2rem;
             cursor: pointer;
-            transition: background-color 0.3s, transform 0.1s;
+            font-weight: bold;
+            transition: transform 0.2s, background-color 0.3s;
         }
 
         button:hover {
@@ -84,53 +99,61 @@
 
         table {
             width: 100%;
-            margin: 20px 0;
             border-collapse: collapse;
-            background: var(--white-color);
-            border-radius: 15px;
+            margin-top: 20px;
+            background-color: var(--white-color);
+            border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 15px var(--shadow-color);
         }
 
         th, td {
-            padding: 10px;
+            padding: 15px;
             text-align: center;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid #E5E7EB;
             font-size: 1rem;
         }
 
         th {
-            background: var(--primary-color);
+            background-color: var(--primary-color);
             color: var(--white-color);
-            font-weight: 600;
             text-transform: uppercase;
         }
 
         tr:hover {
-            background-color: #dfe6e9;
+            background-color: #E5E7EB;
         }
 
         td button {
             background-color: var(--danger-color);
             border: none;
-            padding: 8px;
+            padding: 8px 12px;
             border-radius: 5px;
-            color: var(--white-color);
             cursor: pointer;
             transition: background-color 0.3s;
         }
 
         td button:hover {
-            background-color: #c0392b;
+            background-color: #B91C1C;
         }
 
         .saldo {
             text-align: center;
+            margin-top: 20px;
             font-size: 2rem;
-            margin: 20px 0;
-            color: var(--secondary-color);
             font-weight: bold;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+            color: var(--secondary-color);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         @media (max-width: 768px) {
@@ -139,80 +162,30 @@
             }
 
             h2 {
-                font-size: 1.5rem;
-            }
-
-            form {
-                padding: 15px;
-            }
-
-            input, select, button {
-                font-size: 1rem;
+                font-size: 1.2rem;
             }
 
             .saldo {
                 font-size: 1.5rem;
-            }
-
-            table {
-                font-size: 0.9rem;
-            }
-
-            th, td {
-                padding: 8px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 1.8rem;
-            }
-
-            h2 {
-                font-size: 1.2rem;
-            }
-
-            input, select {
-                font-size: 0.9rem;
-                padding: 10px;
-            }
-
-            button {
-                padding: 10px;
-                font-size: 1rem;
-            }
-
-            .saldo {
-                font-size: 1.2rem;
-            }
-
-            table {
-                display: block;
-                overflow-x: auto;
-            }
-
-            th, td {
-                font-size: 0.8rem;
-                white-space: nowrap;
             }
         }
     </style>
 </head>
 <body>
 
-    <h1>Registro de Ingresos y Gastos</h1>
-
     <div class="container">
-        <h2>Agregar Ingreso</h2>
+        <h1>Registro de Ingresos y Gastos</h1>
+
         <form id="incomeForm">
+            <h2>Agregar Ingreso</h2>
             <input type="date" id="incomeDate" required>
             <input type="text" id="incomeDescription" placeholder="Descripción del ingreso" required>
             <input type="number" id="incomeAmount" placeholder="Monto del ingreso ($)" step="0.01" required>
             <button type="submit">Agregar Ingreso</button>
         </form>
 
-        <h2>Agregar Gasto</h2>
         <form id="expenseForm">
+            <h2>Agregar Gasto</h2>
             <input type="date" id="expenseDate" required>
             <select id="expenseCategory" required>
                 <option value="">Selecciona una categoría</option>
@@ -232,21 +205,78 @@
                 <tr>
                     <th>Fecha</th>
                     <th>Tipo</th>
-                    <th>Categoría / Descripción</th>
+                    <th>Detalle</th>
                     <th>Monto</th>
-                    <th>Acciones</th>
+                    <th>Acción</th>
                 </tr>
             </thead>
             <tbody id="transactionTableBody"></tbody>
         </table>
 
-        <div class="saldo">
-            Saldo Total: $<span id="totalBalance">0.00</span>
-        </div>
+        <div class="saldo">Saldo Total: $<span id="totalBalance">0.00</span></div>
     </div>
 
     <script>
-        // Código JavaScript igual al original
+        let totalBalance = 0;
+        const transactionTableBody = document.getElementById('transactionTableBody');
+        const totalBalanceDisplay = document.getElementById('totalBalance');
+
+        function setTodayDate(input) {
+            const today = new Date().toISOString().split('T')[0];
+            input.value = today;
+        }
+
+        setTodayDate(document.getElementById('incomeDate'));
+        setTodayDate(document.getElementById('expenseDate'));
+
+        function addTransaction(type, detail, date, amount) {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${date}</td>
+                <td>${type}</td>
+                <td>${detail}</td>
+                <td>$${Math.abs(amount).toFixed(2)}</td>
+                <td><button onclick="deleteTransaction(this, ${amount})">Eliminar</button></td>
+            `;
+            transactionTableBody.appendChild(row);
+        }
+
+        function updateBalance(amount) {
+            totalBalance += amount;
+            totalBalanceDisplay.textContent = totalBalance.toFixed(2);
+        }
+
+        function deleteTransaction(button, amount) {
+            button.closest('tr').remove();
+            updateBalance(-amount);
+        }
+
+        document.getElementById('incomeForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const date = this.querySelector('#incomeDate').value;
+            const description = this.querySelector('#incomeDescription').value;
+            const amount = parseFloat(this.querySelector('#incomeAmount').value);
+            if (!isNaN(amount)) {
+                addTransaction('Ingreso', description, date, amount);
+                updateBalance(amount);
+            }
+            this.reset();
+            setTodayDate(this.querySelector('#incomeDate'));
+        });
+
+        document.getElementById('expenseForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const date = this.querySelector('#expenseDate').value;
+            const category = this.querySelector('#expenseCategory').value;
+            const description = this.querySelector('#expenseDescription').value;
+            const amount = parseFloat(this.querySelector('#expenseAmount').value);
+            if (!isNaN(amount)) {
+                addTransaction('Gasto', `${category}: ${description}`, date, -amount);
+                updateBalance(-amount);
+            }
+            this.reset();
+            setTodayDate(this.querySelector('#expenseDate'));
+        });
     </script>
 
 </body>
