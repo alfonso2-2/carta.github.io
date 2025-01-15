@@ -1,283 +1,239 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro de Ingresos y Gastos</title>
+    <title>My Love</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-
-        :root {
-            --primary-color: #3B82F6;
-            --secondary-color: #10B981;
-            --danger-color: #EF4444;
-            --bg-color: #F3F4F6;
-            --white-color: #FFF;
-            --text-color: #111827;
-            --shadow-color: rgba(0, 0, 0, 0.1);
-        }
-
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #6366F1, #A78BFA);
             margin: 0;
             padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 800px;
-            background-color: var(--bg-color);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 8px 25px var(--shadow-color);
-            animation: fadeIn 1s ease-in-out;
-        }
-
-        h1, h2 {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        h2 {
-            font-size: 1.5rem;
-            color: var(--secondary-color);
-        }
-
-        form {
-            background: var(--white-color);
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px var(--shadow-color);
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        form:hover {
-            transform: scale(1.02);
-        }
-
-        input, select, button {
-            padding: 15px;
-            border-radius: 8px;
-            font-size: 1rem;
-            border: 1px solid var(--primary-color);
-            transition: background-color 0.3s, border-color 0.3s;
-        }
-
-        input:focus, select:focus {
-            border-color: var(--secondary-color);
-            outline: none;
-            background-color: #D1D5DB;
-        }
-
-        button {
-            background-color: var(--primary-color);
-            color: var(--white-color);
-            cursor: pointer;
-            font-weight: bold;
-            transition: transform 0.2s, background-color 0.3s;
-        }
-
-        button:hover {
-            background-color: var(--secondary-color);
-            transform: scale(1.05);
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            background-color: var(--white-color);
-            border-radius: 10px;
+            height: 100vh;
+            background: linear-gradient(135deg, #fcecea, #f9a3a3);
+            font-family: 'Poppins', sans-serif;
             overflow: hidden;
-            box-shadow: 0 5px 15px var(--shadow-color);
+            animation: backgroundAnimation 10s infinite alternate;
         }
 
-        th, td {
-            padding: 15px;
+        @keyframes backgroundAnimation {
+            0% {
+                background: linear-gradient(135deg, #fcecea, #f9a3a3);
+            }
+            100% {
+                background: linear-gradient(135deg, #f9a3a3, #fcecea);
+            }
+        }
+
+        .card {
+            position: relative;
+            width: 350px;
+            height: 250px;
+            cursor: pointer;
+            perspective: 1000px;
+        }
+
+        .envelope {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: #d44941;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            transform-style: preserve-3d;
+            transition: transform 1s ease-in-out;
+        }
+
+        .top-flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: #b03a36;
+            clip-path: polygon(0 0, 50% 100%, 100% 0);
+            transform-origin: top;
+            transition: transform 0.8s ease;
+        }
+
+        .bottom-flap {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: #b03a36;
+            clip-path: polygon(0 100%, 50% 0, 100% 100%);
+        }
+
+        .card.open .top-flap {
+            transform: rotateX(-180deg);
+        }
+
+        .stamp {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, white, #fcecea);
+            border: 3px solid #d44941;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .stamp::before {
+            content: "❤️";
+            font-size: 24px;
+            color: #d44941;
+            animation: heartBeat 1.5s infinite;
+        }
+
+        @keyframes heartBeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+        }
+
+        .letter {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300px;
+            height: 200px;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            transform: translate(-50%, -50%) scale(0.8) translateY(50%) translateZ(0);
+            opacity: 0;
+            transition: transform 1s ease, opacity 1s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .card.open .letter {
+            transform: translate(-50%, -50%) scale(1.1) translateY(-150%) translateZ(100px) rotateX(0deg);
+            opacity: 1;
+        }
+
+        .text {
             text-align: center;
-            border-bottom: 1px solid #E5E7EB;
-            font-size: 1rem;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
         }
 
-        th {
-            background-color: var(--primary-color);
-            color: var(--white-color);
+        .card.open .text {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .text p {
+            margin: 15px 0;
+        }
+
+        .text .to {
+            font-size: 22px;
+            font-weight: bold;
+            letter-spacing: 1px;
             text-transform: uppercase;
         }
 
-        tr:hover {
-            background-color: #E5E7EB;
+        .text .from {
+            font-size: 18px;
+            font-style: italic;
         }
 
-        td button {
-            background-color: var(--danger-color);
-            border: none;
-            padding: 8px 12px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
+        .shadow {
+            position: absolute;
+            bottom: -25px;
+            width: 350px;
+            height: 25px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 50%;
+            filter: blur(10px);
         }
 
-        td button:hover {
-            background-color: #B91C1C;
+        .decorative-lines {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
         }
 
-        .saldo {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 2rem;
-            font-weight: bold;
-            color: var(--secondary-color);
+        .line {
+            position: absolute;
+            width: 2px;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            animation: moveLine 5s infinite linear;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
+        @keyframes moveLine {
+            0% {
+                transform: translateX(-100%);
             }
-            to {
-                opacity: 1;
-                transform: translateY(0);
+            100% {
+                transform: translateX(100%);
             }
         }
 
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
+        .line:nth-child(1) {
+            top: 0;
+            left: 25%;
+        }
 
-            h2 {
-                font-size: 1.2rem;
-            }
+        .line:nth-child(2) {
+            top: 0;
+            left: 50%;
+            animation-delay: 2s;
+        }
 
-            .saldo {
-                font-size: 1.5rem;
-            }
+        .line:nth-child(3) {
+            top: 0;
+            left: 75%;
+            animation-delay: 4s;
         }
     </style>
 </head>
 <body>
-
-    <div class="container">
-        <h1>Registro de Ingresos y Gastos</h1>
-
-        <form id="incomeForm">
-            <h2>Agregar Ingreso</h2>
-            <input type="date" id="incomeDate" required>
-            <input type="text" id="incomeDescription" placeholder="Descripción del ingreso" required>
-            <input type="number" id="incomeAmount" placeholder="Monto del ingreso ($)" step="0.01" required>
-            <button type="submit">Agregar Ingreso</button>
-        </form>
-
-        <form id="expenseForm">
-            <h2>Agregar Gasto</h2>
-            <input type="date" id="expenseDate" required>
-            <select id="expenseCategory" required>
-                <option value="">Selecciona una categoría</option>
-                <option value="Alimentación">Alimentación</option>
-                <option value="Transporte">Transporte</option>
-                <option value="Entretenimiento">Entretenimiento</option>
-                <option value="Salud">Salud</option>
-                <option value="Otros">Otros</option>
-            </select>
-            <input type="text" id="expenseDescription" placeholder="Descripción del gasto" required>
-            <input type="number" id="expenseAmount" placeholder="Monto del gasto ($)" step="0.01" required>
-            <button type="submit">Agregar Gasto</button>
-        </form>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Fecha</th>
-                    <th>Tipo</th>
-                    <th>Detalle</th>
-                    <th>Monto</th>
-                    <th>Acción</th>
-                </tr>
-            </thead>
-            <tbody id="transactionTableBody"></tbody>
-        </table>
-
-        <div class="saldo">Saldo Total: $<span id="totalBalance">0.00</span></div>
+    <div class="decorative-lines">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+    </div>
+    <div class="card" onclick="openEnvelope(this)">
+        <div class="envelope">
+            <div class="top-flap"></div>
+            <div class="bottom-flap"></div>
+        </div>
+        <div class="stamp"></div>
+        <div class="letter">Dear Love, you have my heart ❤️</div>
+        <div class="text">
+            <p class="to">To: My Love</p>
+            <p class="from">From: AlexDev</p>
+        </div>
+        <div class="shadow"></div>
     </div>
 
     <script>
-        let totalBalance = 0;
-        const transactionTableBody = document.getElementById('transactionTableBody');
-        const totalBalanceDisplay = document.getElementById('totalBalance');
-
-        function setTodayDate(input) {
-            const today = new Date().toISOString().split('T')[0];
-            input.value = today;
+        function openEnvelope(card) {
+            card.classList.toggle('open');
         }
-
-        setTodayDate(document.getElementById('incomeDate'));
-        setTodayDate(document.getElementById('expenseDate'));
-
-        function addTransaction(type, detail, date, amount) {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${date}</td>
-                <td>${type}</td>
-                <td>${detail}</td>
-                <td>$${Math.abs(amount).toFixed(2)}</td>
-                <td><button onclick="deleteTransaction(this, ${amount})">Eliminar</button></td>
-            `;
-            transactionTableBody.appendChild(row);
-        }
-
-        function updateBalance(amount) {
-            totalBalance += amount;
-            totalBalanceDisplay.textContent = totalBalance.toFixed(2);
-        }
-
-        function deleteTransaction(button, amount) {
-            button.closest('tr').remove();
-            updateBalance(-amount);
-        }
-
-        document.getElementById('incomeForm').addEventListener('submit', function (event) {
-            event.preventDefault();
-            const date = this.querySelector('#incomeDate').value;
-            const description = this.querySelector('#incomeDescription').value;
-            const amount = parseFloat(this.querySelector('#incomeAmount').value);
-            if (!isNaN(amount)) {
-                addTransaction('Ingreso', description, date, amount);
-                updateBalance(amount);
-            }
-            this.reset();
-            setTodayDate(this.querySelector('#incomeDate'));
-        });
-
-        document.getElementById('expenseForm').addEventListener('submit', function (event) {
-            event.preventDefault();
-            const date = this.querySelector('#expenseDate').value;
-            const category = this.querySelector('#expenseCategory').value;
-            const description = this.querySelector('#expenseDescription').value;
-            const amount = parseFloat(this.querySelector('#expenseAmount').value);
-            if (!isNaN(amount)) {
-                addTransaction('Gasto', `${category}: ${description}`, date, -amount);
-                updateBalance(-amount);
-            }
-            this.reset();
-            setTodayDate(this.querySelector('#expenseDate'));
-        });
     </script>
-
 </body>
 </html>
