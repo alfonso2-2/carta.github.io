@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Love</title>
+    <title>Heart Balloons</title>
     <style>
         body {
             margin: 0;
@@ -15,16 +15,6 @@
             background: linear-gradient(135deg, #fcecea, #f9a3a3);
             font-family: 'Poppins', sans-serif;
             overflow: hidden;
-            animation: backgroundAnimation 10s infinite alternate;
-        }
-
-        @keyframes backgroundAnimation {
-            0% {
-                background: linear-gradient(135deg, #fcecea, #f9a3a3);
-            }
-            100% {
-                background: linear-gradient(135deg, #f9a3a3, #fcecea);
-            }
         }
 
         .card {
@@ -115,7 +105,7 @@
             background: white;
             border-radius: 5px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-            transform: translate(-50%, -50%) scale(0.8) translateY(50%) translateZ(0);
+            transform: translate(-50%, -50%) scale(0.8) translateZ(0);
             opacity: 0;
             transition: transform 1s ease, opacity 1s ease;
             display: flex;
@@ -125,8 +115,9 @@
             font-family: 'Poppins', sans-serif;
         }
 
+        /* Mover la carta hacia enfrente del sobre */
         .card.open .letter {
-            transform: translate(-50%, -50%) scale(1.1) translateY(-150%) translateZ(100px) rotateX(0deg);
+            transform: translate(-50%, -50%) scale(1.1) translateZ(200px);
             opacity: 1;
         }
 
@@ -208,6 +199,73 @@
             left: 75%;
             animation-delay: 4s;
         }
+
+        /* Información sobre el destinatario y remitente */
+        .info {
+            position: absolute;
+            bottom: 15px;
+            width: 80%;
+            text-align: center;
+            font-size: 14px;
+            color: white;
+        }
+
+        .info .to {
+            font-weight: bold;
+        }
+
+        .info .from {
+            font-style: italic;
+        }
+
+        /* Estilos para los corazones flotantes */
+        .heart {
+            position: absolute;
+            bottom: -50px;
+            width: 120px; /* Tamaño del corazón */
+            height: 120px;
+            background-color: #ff5f6d; /* Color del corazón */
+            border-radius: 50%; /* Hacer el corazón con bordes redondeados */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 60px;
+            opacity: 0;
+            animation: heartAnimation 5s forwards;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+            transform: rotate(-45deg); /* Rotar para obtener la forma de corazón */
+        }
+
+        .heart:before {
+            content: "❤️";
+        }
+
+        @keyframes heartAnimation {
+            0% {
+                bottom: -50px;
+                opacity: 1;
+                transform: translateX(0);
+            }
+            100% {
+                bottom: 100%;
+                opacity: 0;
+                transform: translateX(30px); /* Movimiento hacia la derecha */
+            }
+        }
+
+        /* Distribución de los corazones por toda la pantalla */
+        .left {
+            left: -100px; /* Lado izquierdo */
+            animation-delay: 0s;
+        }
+
+        .right {
+            right: -100px; /* Lado derecho */
+            animation-delay: 1s;
+        }
+
     </style>
 </head>
 <body>
@@ -220,6 +278,11 @@
         <div class="envelope">
             <div class="top-flap"></div>
             <div class="bottom-flap"></div>
+            <div class="info">
+                <p class="to">To: My Love</p>
+                <p class="from">From: AlexDev</p>
+            </div>
+            <div class="hearts-container"></div> <!-- Contenedor para los corazones flotantes -->
         </div>
         <div class="stamp"></div>
         <div class="letter">Dear Love, you have my heart ❤️</div>
@@ -233,6 +296,22 @@
     <script>
         function openEnvelope(card) {
             card.classList.toggle('open');
+            
+            // Generar los corazones al hacer clic en el sobre
+            const heartsContainer = card.querySelector('.hearts-container');
+            const numberOfHearts = 100; // Aumentamos el número de corazones
+
+            for (let i = 0; i < numberOfHearts; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.classList.add(Math.random() > 0.5 ? 'left' : 'right'); // Asignar aleatoriamente al lado izquierdo o derecho
+                heartsContainer.appendChild(heart);
+
+                // Eliminar los corazones después de que la animación termine
+                setTimeout(() => {
+                    heart.remove();
+                }, 5000); // Tiempo para que el corazón desaparezca después de la animación
+            }
         }
     </script>
 </body>
