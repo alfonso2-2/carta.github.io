@@ -20,8 +20,8 @@
 
         .card {
             position: relative;
-            width: 350px;
-            height: 250px;
+            width: 320px; /* Tamaño del sobre */
+            height: 230px; /* Tamaño del sobre */
             cursor: pointer;
             perspective: 1000px;
         }
@@ -66,12 +66,13 @@
             transform: rotateX(-180deg);
         }
 
+        /* Estampa con corazón en la esquina */
         .stamp {
             position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
+            top: 8%; /* Ajustamos la posición para que quede bien alineada en la esquina */
+            right: 8%;
+            width: 6vw; /* Reducimos el tamaño para ajustarlo al sobre */
+            height: 6vw; /* Reducimos el tamaño para ajustarlo al sobre */
             background: radial-gradient(circle, white, #fcecea);
             border: 3px solid #d44941;
             border-radius: 8px;
@@ -83,7 +84,7 @@
 
         .stamp::before {
             content: "❤️";
-            font-size: 24px;
+            font-size: 18px; /* Reducimos el tamaño del corazón dentro de la estampa */
             color: #d44941;
             animation: heartBeat 1.5s infinite;
         }
@@ -101,8 +102,8 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 300px;
-            height: 200px;
+            width: 250px; /* Tamaño reducido de la carta */
+            height: 160px; /* Tamaño reducido de la carta */
             background: white;
             border-radius: 5px;
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
@@ -217,82 +218,6 @@
 
         .info .from {
             font-style: italic;
-        }
-
-        /* Estilos para los corazones flotantes */
-        .heart {
-            position: absolute;
-            bottom: -50px;
-            width: 120px; /* Tamaño del corazón */
-            height: 120px;
-            background-color: #ff5f6d; /* Color del corazón */
-            border-radius: 50% 50% 0 0; /* Crear la forma de corazón */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-size: 60px;
-            opacity: 0;
-            animation: heartAnimation 5s forwards;
-            animation-timing-function: ease-in-out;
-            animation-iteration-count: infinite;
-            transform: rotate(-45deg); /* Rotar para obtener la forma de corazón */
-        }
-
-        .heart:before {
-            content: "❤️";
-        }
-
-        @keyframes heartAnimation {
-            0% {
-                bottom: -50px;
-                opacity: 1;
-                transform: translateX(0);
-            }
-            100% {
-                bottom: 100%;
-                opacity: 0;
-                transform: translateX(30px); /* Movimiento hacia la derecha */
-            }
-        }
-
-        /* Distribución de los corazones por toda la pantalla */
-        .left {
-            left: -100px; /* Lado izquierdo */
-            animation-delay: 0s;
-        }
-
-        .right {
-            right: -100px; /* Lado derecho */
-            animation-delay: 1s;
-        }
-
-        /* Media Queries para pantallas más pequeñas */
-        @media (max-width: 768px) {
-            .card {
-                width: 80vw; /* Usamos un valor relativo para adaptarse al tamaño de la pantalla */
-                height: 60vh; /* Ajustamos la altura */
-            }
-
-            .stamp {
-                width: 15vw;
-                height: 15vw;
-            }
-
-            .heart {
-                width: 15vw;
-                height: 15vw;
-                font-size: 7vw; /* Ajustamos el tamaño del ícono con respecto al tamaño de la pantalla */
-            }
-
-            .letter {
-                width: 70%;
-                height: 30%;
-            }
-
-            .text {
-                font-size: 14px;
-            }
         }
 
     </style>
